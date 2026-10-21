@@ -1,0 +1,9 @@
+flowchart LR
+  S[Sensor: DHT11 / I2C sensor] -->|GPIO / I2C| MCU[ESP32 or ESP8266]
+  MCU -->|Wi-Fi 2.4 GHz| AP[Wi-Fi Router / Access Point]
+  AP -->|Internet + TLS| CLOUD[Blynk Cloud]
+  CLOUD --> DS[Template Datastreams]
+  DS --> UI[Mobile App / Web Dashboard]
+  UI -->|Control value| DS
+  DS -->|Downlink to device| MCU
+  MCU -->|GPIO via driver| A[LED / low-voltage actuator]
