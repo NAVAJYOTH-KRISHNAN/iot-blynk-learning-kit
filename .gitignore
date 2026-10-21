@@ -1,0 +1,13 @@
+# Local credential/config files
+secrets.h
+secrets.local.h
+.env
+.env.*
+!.env.example
+
+# Build and editor artifacts
+.pio/
+build/
+.vscode/
+.DS_Store
+Thumbs.db
