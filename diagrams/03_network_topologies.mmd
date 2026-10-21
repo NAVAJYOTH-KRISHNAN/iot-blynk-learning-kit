@@ -1,0 +1,15 @@
+flowchart TB
+  subgraph A[Topology A — Direct Wi-Fi to Cloud]
+    D1[ESP32 + sensor] --> R1[Wi-Fi Router] --> C1[Blynk Cloud] --> U1[Phone / Browser]
+  end
+  subgraph B[Topology B — Local Gateway / Edge]
+    D2[Sensor nodes] --> G[Local Gateway: Pi / PC]
+    G -->|MQTT / HTTPS| C2[Cloud platform]
+    G --> L[Local dashboard / local rules]
+    C2 --> U2[Remote dashboard]
+  end
+  subgraph C[Topology C — Low-power remote node]
+    D3[Battery sensor node] --> LP[LoRa / LPWAN link]
+    LP --> GW[Gateway]
+    GW --> C3[Cloud / application]
+  end
