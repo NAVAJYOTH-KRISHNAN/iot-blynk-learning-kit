@@ -1,0 +1,13 @@
+flowchart TD
+  START[Boot] --> INIT[Initialize GPIO and sensor]
+  INIT --> NET{Wi-Fi connected?}
+  NET -- No --> RETRY[Retry with backoff; keep local safe state]
+  RETRY --> NET
+  NET -- Yes --> CLOUD{Blynk connected?}
+  CLOUD -- No --> LOCAL[Continue local sensing; mark cloud unavailable]
+  LOCAL --> CLOUD
+  CLOUD -- Yes --> RUN[Timed sampling + telemetry + validated commands]
+  RUN --> SENSOR{Sensor reading valid?}
+  SENSOR -- No --> ERR[Log fault; do not publish bogus value]
+  ERR --> RUN
+  SENSOR -- Yes --> RUN
