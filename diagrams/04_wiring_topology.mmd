@@ -1,0 +1,22 @@
+flowchart LR
+  subgraph ESP32[ESP32 DevKit — 3.3 V logic]
+    P3V[3V3]
+    GND[GND]
+    GPIO4[GPIO 4]
+    GPIO2[GPIO 2]
+  end
+  subgraph DHT[DHT11 module]
+    DV[VCC]
+    DD[DATA]
+    DG[GND]
+  end
+  subgraph LED[External LED]
+    R[220–1000 ohm resistor]
+    LA[LED anode]
+    LK[LED cathode]
+  end
+  P3V --> DV
+  GPIO4 --- DD
+  GND --- DG
+  GPIO2 --> R --> LA
+  LK --> GND
