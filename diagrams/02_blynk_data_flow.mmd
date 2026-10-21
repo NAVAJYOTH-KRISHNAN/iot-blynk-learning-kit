@@ -1,0 +1,11 @@
+sequenceDiagram
+  participant Sensor
+  participant MCU as ESP32 Firmware
+  participant Blynk as Blynk Cloud
+  participant UI as Mobile/Web Dashboard
+  Sensor->>MCU: Read sensor on timed interval
+  MCU->>Blynk: Write telemetry to V0/V1
+  Blynk->>UI: Update bound widgets
+  UI->>Blynk: User changes V2 switch
+  Blynk->>MCU: BLYNK_WRITE(V2) callback
+  MCU->>MCU: Validate command and set output
